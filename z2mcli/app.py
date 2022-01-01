@@ -18,7 +18,10 @@ def main(ctx):
     try:
         ctx.obj = Z2MClient(config)
     except ConnectionRefusedError:
-        print("Connection refused to moqsuitto server at " + config["broker_host"] + ":" + str(config["broker_port"]) + ", exiting")
+        print("Connection refused to mqtt broker at " + config["broker_host"] + ":" + str(config["broker_port"]) + ", exiting")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Unexpected {e=}, {type(e)=}")
         sys.exit(1)
 
 @main.command()

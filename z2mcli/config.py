@@ -49,7 +49,7 @@ def read_config():
     file_path = _get_config_filepath()
     if file_path is not None:
         try:
-            return _read_and_validate_yaml(file_path), file_path
+            return _read_and_validate_yaml(file_path)
         except yaml.scanner.ScannerError as e:
             raise yaml.scanner.ScannerError("Config doesn't appear to be valid YAML: " + str(file_path)) from e
         except ValidationError as e:
